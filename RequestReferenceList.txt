@@ -11,3 +11,10 @@ Get an Account i, where i is any long
 GET
 http://localhost:8080/Application-Management-App/api/account/json/i
 
+Delete an account
+DELETE
+http://localhost:8080/Application-Management-App/api/account/json/i
+
+Update Account
+PUT
+http://localhost:8080/Application-Management-App/api/account/json/i

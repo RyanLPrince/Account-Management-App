@@ -6,5 +6,6 @@ public interface IAccountService {
 	String findAccount(Long accountNumber);
 	String createAccount(String accountAsJSON);
 	String deleteAccount(Long accountNumber);
-	String addAccount(String movieAsJSON);
+	String addAccount(String accountAsJSON);
+	String updateAccount(Long accountNumber, String accountAsJSON);
 }

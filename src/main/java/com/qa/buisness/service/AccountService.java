@@ -30,4 +30,8 @@ public class AccountService implements IAccountService {
 		return repo.addAccount(movieAsJSON);
 	}
 
+	public String updateAccount(Long accountNumber,String accountAsJSON) {
+		return repo.updateAccount(accountNumber, accountAsJSON);
+	}
+
 }
