@@ -22,13 +22,13 @@ public class AccountEndPoint {
 	public String addAccount(String accountAsJSON) {
 		return service.addAccount(accountAsJSON);
 	}
-	
-//	@GET
-//	@Path("/json")
-//	@Produces({"application/json"})
-//	public String getAllAccounts() {
-//		return service.getAllAccounts();
-//	}
+			
+	@GET
+	@Path("/json")
+	@Produces({"application/json"})
+	public String getAllAccounts() {
+		return service.getAllAccounts();
+	}
 	
 	
 }

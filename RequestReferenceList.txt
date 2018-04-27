@@ -2,3 +2,7 @@ Add Account
 POST
 http://localhost:8080/Application-Management-App/api/account/json/
 {"firstName":"Joe","surname":"blogs","accountNumber":1,"generateAccountNumber":false}
+
+Get All Accounts
+GET
+http://localhost:8080/Application-Management-App/api/account/json/
