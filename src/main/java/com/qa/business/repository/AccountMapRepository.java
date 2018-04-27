@@ -8,7 +8,9 @@ import com.qa.persistence.domain.Account;
 import util.JSONUtil;
 
 public class AccountMapRepository implements IAccountRepository {
-
+	
+	private JSONUtil jsonUtil;
+	
 	Map<Long, Account> accountMap;
 	
 	public AccountMapRepository() {
@@ -16,11 +18,11 @@ public class AccountMapRepository implements IAccountRepository {
 	}
 	
 	public Account createAccount(String accountAsJSON) {
-		return JSONUtil.getObjectForJSON(accountAsJSON, Account.class);
+		return jsonUtil.getObjectForJSON(accountAsJSON, Account.class);
 	}
 
 	public String addAccount(String accountAsJSON) {
-		Account account=JSONUtil.getObjectForJSON(accountAsJSON, Account.class);
+		Account account=jsonUtil.getObjectForJSON(accountAsJSON, Account.class);
 		if (account.getAccountNumber()==null && account.getGenerateAccountNumber()==true) {
 			for (Long i=1L;;i++) {
 				if (accountMap.containsKey(i)){

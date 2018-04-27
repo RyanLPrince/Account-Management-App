@@ -8,6 +8,8 @@ import org.junit.Test;
 import com.qa.business.repository.AccountMapRepository;
 import com.qa.persistence.domain.Account;
 
+import util.JSONUtil;
+
 public class AccountMapServiceTest {
 
 	private Account joeBloggs;
@@ -15,12 +17,15 @@ public class AccountMapServiceTest {
 	private Account janeDoe;
 	private AccountMapRepository repo;
 	
+	private JSONUtil jsonUtil;
+	
 	@Before
 	public void testInit() {
 		joeBloggs=new Account("Joe","Bloggs",1L);
 		joeBloggs2=new Account("Joe","Bloggs",2L);
 		janeDoe=new Account("Jane","Doe",1L);
 		repo=new AccountMapRepository();
+		jsonUtil=new JSONUtil();
 	}
 	
 	@Test
@@ -29,6 +34,13 @@ public class AccountMapServiceTest {
 		assertEquals(repo.getAccountMap().size(),1);
 	}
 	
+	@Test 
+	public void JSONTest() {
+		String janeDoeAsJSON=("{\"firstName\":\"Jane\",\"surname\":\"Doe\",\"accountNumber\":1,\"generateAccountNumber\":false}");
+		String actual=jsonUtil.getJSONForObject(janeDoe);
+		assertEquals(janeDoeAsJSON,actual);
+		
+	}
 	@Test
 	public void noDuplicateAccountNumberTest() {
 		repo.addAccount(joeBloggs);
@@ -49,5 +61,13 @@ public class AccountMapServiceTest {
 		assertTrue(repo.getAccountMap().containsValue(joeBloggs2));
 		
 	}
+	
+	public void autoGenerateAccountNumberTest() {
+		repo.addAccount(joeBloggs);
+		repo.addAccount("{\"firstName\":\"Jane\",\"surname\":\"Doe\",\"accountNumber\":null,\"generateAccountNumber\":true}");
+		assertEquals(repo.getAccountMap().size(),2);
+	}
 
+	//String janeBloggs=("{ \"firstName\":\"Jane\", \"surname\":\"Bloggs\", \"accountNumber\":1 }");
+			//String janeDoeFromJSON=("{ \"firstName\":\"Jane\", \"surname\":\"Bloggs\", \"generateAccountNumber\":true }");
 }
