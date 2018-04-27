@@ -7,5 +7,6 @@ public interface IAccountRepository {
 	Account createAccount(String accountAsJSON);
 	String addAccount(String accounAsJSON);
 	String deleteAccount(Long accountNumber);
+	String findAccount(Long accountNumber);
 	
 }

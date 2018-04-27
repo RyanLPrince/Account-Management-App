@@ -61,11 +61,21 @@ public class AccountMapServiceTest {
 		assertTrue(repo.getAccountMap().containsValue(joeBloggs2));
 		
 	}
-	
+	@Test
 	public void autoGenerateAccountNumberTest() {
 		repo.addAccount(joeBloggs);
 		repo.addAccount("{\"firstName\":\"Jane\",\"surname\":\"Doe\",\"accountNumber\":null,\"generateAccountNumber\":true}");
 		assertEquals(repo.getAccountMap().size(),2);
+		repo.addAccount(joeBloggs2);
+		assertEquals(repo.getAccountMap().size(),2);
+	}
+	@Test
+	public void findAccountTest() {
+		repo.addAccount(joeBloggs);
+		System.out.println(repo.findAccount(1L));
+		assertEquals(repo.findAccount(2L),"{\"message\":\"No such account exists. Request denied! \"}");
+		assertEquals(repo.findAccount(1L),"{\"firstName\":\"Joe\",\"surname\":\"Bloggs\",\"accountNumber\":1,\"generateAccountNumber\":false}");
+		
 	}
 
 	//String janeBloggs=("{ \"firstName\":\"Jane\", \"surname\":\"Bloggs\", \"accountNumber\":1 }");

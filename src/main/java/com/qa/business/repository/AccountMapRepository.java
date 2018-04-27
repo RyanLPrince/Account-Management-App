@@ -15,6 +15,7 @@ public class AccountMapRepository implements IAccountRepository {
 	
 	public AccountMapRepository() {
 		accountMap=new HashMap<Long,Account>();
+		jsonUtil=new JSONUtil();
 	}
 	
 	public Account createAccount(String accountAsJSON) {
@@ -83,6 +84,16 @@ public class AccountMapRepository implements IAccountRepository {
 
 	public Map<Long,Account> getAccountMap() {
 		return this.accountMap;
+	}
+
+	public String findAccount(Long accountNumber) {
+		if (accountMap.containsKey(accountNumber)) {
+			return jsonUtil.getJSONForObject(accountMap.get(accountNumber));
+		}
+		else {
+			return "{\"message\":\"No such account exists. Request denied! \"}";
+		}
+		
 	}
 
 }
