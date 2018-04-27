@@ -91,8 +91,15 @@ public class AccountMapServiceTest {
 		expected="{\"firstName\":\"Joseph\",\"surname\":\"Briggs\",\"accountNumber\":1,\"generateAccountNumber\":false}";
 		actual=repo.findAccount(1L);
 		assertEquals(expected, actual);
-		
-		
+	}
+	
+	@Test
+	public void getAllAccountsTest() {
+		repo.addAccount(joeBloggs);
+		repo.addAccount(joeBloggs2);
+		assertEquals(repo.getAllAccounts(),"{\"1\":{\"firstName\":\"Joe\",\"surname\":\"Bloggs\",\"accountNumber\":1,\"generateAccountNumber\":false},"
+				+ "\"2\":{\"firstName\":\"Joe\",\"surname\":\"Bloggs\",\"accountNumber\":2,\"generateAccountNumber\":false}}");
+
 	}
 
 }

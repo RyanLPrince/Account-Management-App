@@ -18,8 +18,8 @@ public class AccountMapRepository implements IAccountRepository {
 		jsonUtil=new JSONUtil();
 	}
 	
-	public Account createAccount(String accountAsJSON) {
-		return jsonUtil.getObjectForJSON(accountAsJSON, Account.class);
+	public String createAccount(String accountAsJSON) {
+		return "{\"message\":\"Account has been succesfully created.\"}";
 	}
 
 	public String addAccount(String accountAsJSON) {
@@ -110,8 +110,12 @@ public class AccountMapRepository implements IAccountRepository {
 	private String updateFields(Account oldAccount,Account updateAccount ) {
 		if (updateAccount.getFirstName()!=null) {oldAccount.setFirstName(updateAccount.getFirstName());}
 		if (updateAccount.getSurname()!=null) {oldAccount.setSurname(updateAccount.getSurname());}
-		return jsonUtil.getJSONForObject(oldAccount);
-				
+		return jsonUtil.getJSONForObject(oldAccount);				
+	}
+
+	public String getAllAccounts() {
+		
+		return jsonUtil.getJSONForObject(accountMap);
 	}
 	
 
