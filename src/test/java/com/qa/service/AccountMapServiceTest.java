@@ -5,45 +5,48 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.qa.business.repository.AccountMapRepository;
+import com.qa.persistence.domain.Account;
+
 public class AccountMapServiceTest {
 
 	private Account joeBloggs;
 	private Account joeBloggs2;
 	private Account janeDoe;
-	private AccountMapService service;
+	private AccountMapRepository repo;
 	
 	@Before
 	public void testInit() {
-		joeBloggs=new Account("Joe","Bloggs",1);
-		joeBloggs2=new Account("Joe","Bloggs",2);
-		janeDoe=new Account("Jane","Doe","1");
-		service=new AccountMapService();
+		joeBloggs=new Account("Joe","Bloggs",1L);
+		joeBloggs2=new Account("Joe","Bloggs",2L);
+		janeDoe=new Account("Jane","Doe",1L);
+		repo=new AccountMapRepository();
 	}
 	
 	@Test
 	public void addAccountTest() {
-		service.addAccount(joeBloggs);
-		assertEquals(service.getAccountMap().size(),1);
+		repo.addAccount(joeBloggs);
+		assertEquals(repo.getAccountMap().size(),1);
 	}
 	
 	@Test
 	public void noDuplicateAccountNumberTest() {
-		service.addAccount(joeBloggs);
-		service.addAccount(joeBloggs2);
-		service.addAccount(janeDoe);
-		assertEquals(service.getAccountMap().size(),2);
-		boolean mapContents=service.getAccountMap().contains(joeBloggs)&&service.getAccountMap().contains(joeBloggs2)&&
-				!service.getAccountMap().contains(janeDoe);
+		repo.addAccount(joeBloggs);
+		repo.addAccount(joeBloggs2);
+		repo.addAccount(janeDoe);
+		assertEquals(repo.getAccountMap().size(),2);
+		boolean mapContents=repo.getAccountMap().containsValue(joeBloggs)&&repo.getAccountMap().containsValue(joeBloggs2)&&
+				!repo.getAccountMap().containsValue(janeDoe);
 		assertTrue(mapContents);
 	}
 	
 	@Test
 	public void deleteAccount() {
-		service.addAccount(joeBloggs);
-		service.addAccount(janeDoe);
-		service.deleteAccount(joeBloggs);
-		assertEquals(service.getAccountMap().size(),1);
-		assertTrue(service.getAccountMap().contains(janeDoe));
+		repo.addAccount(joeBloggs);
+		repo.addAccount(joeBloggs2);
+		repo.deleteAccount(1L);
+		assertEquals(repo.getAccountMap().size(),1);
+		assertTrue(repo.getAccountMap().containsValue(joeBloggs2));
 		
 	}
 
