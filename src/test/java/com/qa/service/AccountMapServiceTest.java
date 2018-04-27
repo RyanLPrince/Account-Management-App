@@ -72,9 +72,26 @@ public class AccountMapServiceTest {
 	@Test
 	public void findAccountTest() {
 		repo.addAccount(joeBloggs);
-		System.out.println(repo.findAccount(1L));
+		//System.out.println(repo.findAccount(1L));
 		assertEquals(repo.findAccount(2L),"{\"message\":\"No such account exists. Request denied! \"}");
 		assertEquals(repo.findAccount(1L),"{\"firstName\":\"Joe\",\"surname\":\"Bloggs\",\"accountNumber\":1,\"generateAccountNumber\":false}");
+	}
+	
+	@Test
+	public void updateAccountTest() {
+		repo.addAccount(joeBloggs);
+		repo.updateAccount(1L,"{\"firstName\":\"Joey\",\"surname\":\"Briggs\",\"accountNumber\":1,\"generateAccountNumber\":false}");
+		String expected="{\"firstName\":\"Joey\",\"surname\":\"Briggs\",\"accountNumber\":1,\"generateAccountNumber\":false}";
+		String actual=repo.findAccount(1L);
+		assertEquals(expected, actual);
+		
+		
+		repo.updateAccount(1L,"{\"firstName\":\"Joseph\"}");
+		
+		expected="{\"firstName\":\"Joseph\",\"surname\":\"Briggs\",\"accountNumber\":1,\"generateAccountNumber\":false}";
+		actual=repo.findAccount(1L);
+		assertEquals(expected, actual);
+		
 		
 	}
 

@@ -96,4 +96,23 @@ public class AccountMapRepository implements IAccountRepository {
 		
 	}
 
+	public String updateAccount(Long accountNumber, String updateAccountAsJSON) {
+		
+		if (accountMap.containsKey(accountNumber)) {
+			Account oldAccount =(accountMap.get(accountNumber));			
+			return updateFields(oldAccount,jsonUtil.getObjectForJSON(updateAccountAsJSON, Account.class) );
+		}
+		else {
+			return "{\"message\":\"No such account exists. Request denied! \"}";
+		}
+	}
+
+	private String updateFields(Account oldAccount,Account updateAccount ) {
+		if (updateAccount.getFirstName()!=null) {oldAccount.setFirstName(updateAccount.getFirstName());}
+		if (updateAccount.getSurname()!=null) {oldAccount.setSurname(updateAccount.getSurname());}
+		return jsonUtil.getJSONForObject(oldAccount);
+				
+	}
+	
+
 }

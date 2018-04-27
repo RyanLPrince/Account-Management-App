@@ -35,4 +35,19 @@ public class Account {
 	public void setAccountNumber(Long accountNumber) {
 		this.accountNumber=accountNumber;
 	}
+
+	public String getFirstName() {
+		return this.firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName=firstName;
+	}
+	public String getSurname() {
+		return this.surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname=surname;
+	}
 }
