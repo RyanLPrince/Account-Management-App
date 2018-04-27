@@ -7,7 +7,7 @@ Get All Accounts
 GET
 http://localhost:8080/Application-Management-App/api/account/json/
 
-Get Account i, where i is any long
+Get an Account i, where i is any long
 GET
 http://localhost:8080/Application-Management-App/api/account/json/i
 
