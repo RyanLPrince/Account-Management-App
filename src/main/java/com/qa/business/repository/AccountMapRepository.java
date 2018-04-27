@@ -106,6 +106,7 @@ public class AccountMapRepository implements IAccountRepository {
 		if (accountMap.containsKey(accountNumber)) {
 			Account oldAccount =(accountMap.get(accountNumber));			
 			return updateFields(oldAccount,jsonUtil.getObjectForJSON(updateAccountAsJSON, Account.class) );
+			//return "{\"message\":\"Account has been updated \"}";
 		}
 		else {
 			return "{\"message\":\"No such account exists. Request denied! \"}";
