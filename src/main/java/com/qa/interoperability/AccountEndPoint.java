@@ -5,6 +5,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import com.qa.buisness.service.IAccountService;
@@ -22,13 +23,21 @@ public class AccountEndPoint {
 	public String addAccount(String accountAsJSON) {
 		return service.addAccount(accountAsJSON);
 	}
-			
+	
+	@GET
+	@Path("/json/{accountNumber}")
+	@Produces({"application/json"})
+	public String findAccount(@PathParam("accountNumber")Long accountNumber) {
+		return service.findAccount(accountNumber);
+	}
+	
 	@GET
 	@Path("/json")
 	@Produces({"application/json"})
 	public String getAllAccounts() {
 		return service.getAllAccounts();
 	}
+	
 	
 	
 }
