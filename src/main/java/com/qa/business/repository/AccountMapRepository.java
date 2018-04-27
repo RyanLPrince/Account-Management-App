@@ -3,10 +3,15 @@ package com.qa.business.repository;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Alternative;
+
 import com.qa.persistence.domain.Account;
 
 import util.JSONUtil;
 
+@ApplicationScoped
+@Alternative
 public class AccountMapRepository implements IAccountRepository {
 	
 	private JSONUtil jsonUtil;

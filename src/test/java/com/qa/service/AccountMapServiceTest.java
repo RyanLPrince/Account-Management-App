@@ -32,6 +32,8 @@ public class AccountMapServiceTest {
 	public void addAccountTest() {
 		repo.addAccount(joeBloggs);
 		assertEquals(repo.getAccountMap().size(),1);
+		repo.addAccount("{\"firstName\":\"Jane\",\"surname\":\"Doe\",\"accountNumber\":null,\"generateAccountNumber\":true}");
+		assertEquals(repo.getAccountMap().size(),2);
 	}
 	
 	@Test 
