@@ -78,6 +78,4 @@ public class AccountMapServiceTest {
 		
 	}
 
-	//String janeBloggs=("{ \"firstName\":\"Jane\", \"surname\":\"Bloggs\", \"accountNumber\":1 }");
-			//String janeDoeFromJSON=("{ \"firstName\":\"Jane\", \"surname\":\"Bloggs\", \"generateAccountNumber\":true }");
 }
