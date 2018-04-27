@@ -18,3 +18,6 @@ http://localhost:8080/Application-Management-App/api/account/json/i
 Update Account
 PUT
 http://localhost:8080/Application-Management-App/api/account/json/i
+{"firstName":"Joe","surname":"blogs","accountNumber":1,"generateAccountNumber":false}
+Or
+{"firstName":"Joe"}
