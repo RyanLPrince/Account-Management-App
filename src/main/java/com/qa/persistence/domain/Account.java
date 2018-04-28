@@ -1,9 +1,14 @@
 package com.qa.persistence.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Account {
 	
 	private String firstName;
 	private String surname;
+	@Id
 	private Long accountNumber; 
 	private boolean generateAccountNumber=false;
 	

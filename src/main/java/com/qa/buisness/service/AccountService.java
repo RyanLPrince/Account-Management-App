@@ -2,6 +2,8 @@ package com.qa.buisness.service;
 
 import javax.inject.Inject;
 
+import org.apache.log4j.Logger;
+
 import com.qa.business.repository.IAccountRepository;
 
 public class AccountService implements IAccountService {

@@ -16,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.qa.business.repository.AccountDBRepository;
 import com.qa.persistence.domain.Account;
 
 import util.JSONUtil;
@@ -34,15 +35,17 @@ public class AccountDBServiceTest {
 	
 	private JSONUtil jsonUtil;
 	
-	private static final String MockObject="{\"firstName\":\"Joe\",\"surname\":\"Bloggs\",\"accountNumber\":\"1\"}";
-	private static final String MockArray="[{\"firstName\":\"Joe\",\"surname\":\"Bloggs\",\"accountNumber\":\"1\"}]";
+	private static final String MockObject="{\"firstName\":\"Joe\",\"surname\":\"Bloggs\",\"accountNumber\":1}";
+	private static final String MockArray="[{\"firstName\":\"Joe\",\"surname\":\"Bloggs\",\"accountNumber\":1}]";
 
 	
 	@Before
 	public void testInit() {
 		jsonUtil=new JSONUtil();
+		repo.setManager(manager);
+		repo.setUtil(jsonUtil);
 	}
-	
+
 	@Test
 	public void addAccountTest() {
 		String expected=repo.addAccount(MockObject);
@@ -67,7 +70,7 @@ public class AccountDBServiceTest {
 		List<Account> accounts=new ArrayList<Account>();
 		accounts.add(new Account("Joe","Blogs",1L));
 		Mockito.when(query.getResultList()).thenReturn(accounts);
-		assertEqual(MockArray,repo.getAllAccounts());
+		assertEquals(MockArray,repo.getAllAccounts());
 		
 	}
 	

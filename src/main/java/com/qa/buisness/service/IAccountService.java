@@ -1,7 +1,6 @@
 package com.qa.buisness.service;
 
 public interface IAccountService {
-	
 	String getAllAccounts();	
 	String findAccount(Long accountNumber);
 	String createAccount(String accountAsJSON);
