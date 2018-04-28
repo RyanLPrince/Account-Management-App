@@ -55,7 +55,7 @@ public class AccountDBServiceTest {
 	@Test
 	public void deleteAccountTest() {
 		String expected=repo.deleteAccount(1L);
-		assertEquals(expected,"{\"message\":\"Account has been removed \"}");		
+		assertEquals(expected,"{\"message\":\"No such account exists. Request denied! \"}");		
 	}
 	
 	@Test

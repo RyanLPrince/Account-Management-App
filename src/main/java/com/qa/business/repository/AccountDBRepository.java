@@ -39,15 +39,21 @@ public class AccountDBRepository implements IAccountRepository{
 	@Transactional(REQUIRED)
 	public String addAccount(String accountAsJSON) {
 		Account account = jsonUtil.getObjectForJSON(accountAsJSON, Account.class);
-		manager.persist(account);
-		return "{\"message\":\"Account has been succesfully added. \"}";
+		if (getAccount(account.getAccountNumber())==null) {
+			manager.persist(account);
+			return "{\"message\":\"Account has been succesfully added. \"}";
+		}
+		else {
+			return "{\"message\":\"An account with this acocunt number already exists. Request Denied! \"}";
+		}
+		
 	}
 	
 	@Transactional(REQUIRED)
 	public String deleteAccount(Long accountNumber) {
-		String accountAsJSON= findAccount(accountNumber);
-		if (accountAsJSON!=null) {
-			manager.remove(accountNumber);
+		Account account=getAccount(accountNumber);
+		if (account!=null) {
+			manager.remove(account);
 			return "{\"message\":\"Account has been removed \"}";
 		}
 		return "{\"message\":\"No such account exists. Request denied! \"}";
@@ -57,6 +63,10 @@ public class AccountDBRepository implements IAccountRepository{
 	public String findAccount(Long accountNumber) {
 		Account account =manager.find(Account.class, accountNumber);
 		return jsonUtil.getJSONForObject(account);
+	}
+	public Account getAccount(Long accountNumber) {
+		Account account =manager.find(Account.class, accountNumber);
+		return account;
 	}
 	
 	@Transactional(REQUIRED)
