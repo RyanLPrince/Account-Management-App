@@ -36,7 +36,7 @@ public class AccountDBServiceTest {
 	private JSONUtil jsonUtil;
 	
 	private static final String MockObject="{\"firstName\":\"Joe\",\"surname\":\"Bloggs\",\"accountNumber\":1}";
-	private static final String MockArray="[{\"firstName\":\"Joe\",\"surname\":\"Bloggs\",\"accountNumber\":1}]";
+	private static final String MockArray="[{\"firstName\":\"Joe\",\"surname\":\"Bloggs\",\"accountNumber\":1,\"generateAccountNumber\":false}]";
 
 	
 	@Before
@@ -60,7 +60,7 @@ public class AccountDBServiceTest {
 	
 	@Test
 	public void updateAccountTest() {
-		String expected=repo.updateAccount(100L,MockObject);
+		String expected=repo.updateAccount(1L,MockObject);
 		assertEquals(expected,"{\"message\":\"No such account exists. Request denied! \"}");
 	}
 	
@@ -68,7 +68,7 @@ public class AccountDBServiceTest {
 	public void getAllAccounts() {
 		Mockito.when(manager.createQuery(Mockito.anyString())).thenReturn(query);
 		List<Account> accounts=new ArrayList<Account>();
-		accounts.add(new Account("Joe","Blogs",1L));
+		accounts.add(jsonUtil.getObjectForJSON(repo.createAccount(MockObject), Account.class));
 		Mockito.when(query.getResultList()).thenReturn(accounts);
 		assertEquals(MockArray,repo.getAllAccounts());
 		
