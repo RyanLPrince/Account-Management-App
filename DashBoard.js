@@ -1,14 +1,31 @@
-var Account={
-    firstName:"",
-    surname:"",
-    accountNumber:0,
-    generateAccountNumber:false,
+class Account{
+    constructor(firstName,surname,accountNumber){
+        this.firstName=firstName;
+        this.surname=surname;
+        this.accountNumber=accountNumber;
+        this.generateAccountNumber=false;
+    }
+    
+    getFirstName(){
+        return this.firstName;
+    }
+    getSurname(){
+        return this.surname;
+    }
+    getAccountNumber(){
+        return this.accountNumber;
+    }
+    
 }
 
 function createAccount(){
-    Account.firstName=document.getElementById("firstName").value;
-    Account.surname=document.getElementById("surname").value;
-    Account.accountNumber=document.getElementById("accountNumber").value;
+    //window.alert("Hello");
+    var account=new Account(document.getElementById("firstName").value,
+                        document.getElementById("surname").value,
+                        document.getElementById("accountNumber").value)
     
-    window.alert(Account.firstName+" "+ Account.surname+" "+Account.accountNumber)
+    window.alert(account.getFirstName()+" "+ account.getSurname()+" "+account.getAccountNumber())
+    window.alert("Hello");
 }
+
+
