@@ -24,8 +24,9 @@ function createAccount(){
                         document.getElementById("surname").value,
                         document.getElementById("accountNumber").value)
     
-    window.alert(account.getFirstName()+" "+ account.getSurname()+" "+account.getAccountNumber())
-    window.alert("Hello");
+    var accountAsJSON=JSON.stringify(account)
+    window.alert(accountAsJSON);
+   
 }
 
 
