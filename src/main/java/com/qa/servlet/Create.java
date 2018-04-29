@@ -1,6 +1,6 @@
 package com.qa.servlet;
 
-import static org.junit.Assert.assertThat;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -66,14 +66,19 @@ public class Create extends HttpServlet{
 	    //assertThat((((HttpResponse) response).getStatusLine().getStatusCode()), equal(200));
 	    HttpEntity hEntity = res.getEntity();
 	    
-	    
 	    if (entity != null) {
 			    InputStream instream = hEntity.getContent();//entity
 			    try {
 			    	PrintWriter out=response.getWriter();
 			    	
 			    	String inString = getStringFromInputStream(instream);
+			    	
 			    	out.println(inString);
+			    	
+			    	response.setContentType("text/html");
+			    	response.getWriter();
+			    	out.println("<br/> <a href=\"localhost:8080/Application-Management-App/DashBoard.html\"> Home </a>");
+			    	out.close();
 			    	
 			    } finally {
 			        instream.close();
