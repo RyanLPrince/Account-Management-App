@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="DashBoard.js"></script>
-    </head>
+    <head></head>
     <body>
-        <form>
+        <form action="Create" method="post">
             First Name <input type="text"
-                   placeholder="first name"
-                   required="required"
-                id="firstName"              />
-            Surname<input type="text"
-                   placeholder="Surname"
-                   required="required"
+                   			placeholder="first name"
+                   			required="required"
+                			id="firstName"
+                			name="firstName"/>
+            Surname	<input type="text"
+                   	placeholder="Surname"
+                   	required="required"
                     id="surname"
-                          />
+                    name="surname"/>
             Account Number<input type="number"
-                   placeholder="Account Number"
-                   required="required"
-                    id="accountNumber"
-                                 />
-            <input type="submit" onclick=createAccount() value="submit">
+                   		placeholder="Account Number"
+                   		required="required"
+                    	id="accountNumber"
+                    	name="accountNumber"/>
+            <input type="submit" value="submit">
         </form>
     </body>
 </html>

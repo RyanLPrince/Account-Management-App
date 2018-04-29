@@ -7,6 +7,7 @@
 	return a JSON message instead
 -Bean validation
 
-currently have two home pages, 
-1. http://localhost:8080/Application-Management-App/home (from servlet annotation)
-2. http://localhost:8080/Application-Management-App/index.xhtml (from index.xhtml/web.xml)
+pages 
+1. http://localhost:8080/Application-Management-App/servlet (servlet)
+2. http://localhost:8080/Application-Management-App/root (servlet)
+2. http://localhost:8080/Application-Management-App/DashBoard.xhtml (from index.xhtml/web.xml)
