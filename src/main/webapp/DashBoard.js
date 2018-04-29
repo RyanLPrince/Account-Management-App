@@ -45,10 +45,9 @@ function sendRequest(accountAsJSON){
 }
 
  function processRequest(e) {   
-     window.alert("invoked");
      window.alert(xhr.status+"");
      if (xhr.readyState == 4 && xhr.status == 200) {
-       //var response = JSON.parse(xhr.responseText);//redundnat?
+       //var response = JSON.parse(xhr.responseText);//redundant?
         window.alert(responseText);
     }
         

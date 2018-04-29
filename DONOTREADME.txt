@@ -6,3 +6,7 @@
 -Get all accounts returns null if no accounts exist
 	return a JSON message instead
 -Bean validation
+
+currently have two home pages, 
+1. http://localhost:8080/Application-Management-App/home (from servlet annotation)
+2. http://localhost:8080/Application-Management-App/index.xhtml (from index.xhtml/web.xml)
