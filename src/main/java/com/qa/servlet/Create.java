@@ -2,9 +2,12 @@ package com.qa.servlet;
 
 import static org.junit.Assert.assertThat;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,8 +48,6 @@ public class Create extends HttpServlet{
 		Account account = new Account(firstName,surname,accountNumber);
 		String accountAsJSON=json.getJSONForObject(account);
 		
-		
-		//
 		CloseableHttpClient client=HttpClients.createDefault();
 		HttpClient httpclient = HttpClients.createDefault();
 		HttpPost httpPost = new HttpPost("http://localhost:8080/Application-Management-App/api/account/json/");
@@ -63,8 +64,24 @@ public class Create extends HttpServlet{
 	    
 	    CloseableHttpResponse res = client.execute(httpPost);
 	    //assertThat((((HttpResponse) response).getStatusLine().getStatusCode()), equal(200));
-	    client.close();
+	    HttpEntity hEntity = res.getEntity();
 	    
+	    
+	    if (entity != null) {
+			    InputStream instream = hEntity.getContent();//entity
+			    try {
+			    	PrintWriter out=response.getWriter();
+			    	
+			    	String inString = getStringFromInputStream(instream);
+			    	out.println(inString);
+			    	
+			    } finally {
+			        instream.close();
+			    }
+	    }
+	    
+	    client.close();
+}	    
 		
 		//Execute and get the response.
 		//HttpResponse res = httpclient.execute(httppost);
@@ -79,6 +96,34 @@ public class Create extends HttpServlet{
 		//        instream.close();
 		//    }
 	//	}
-		
-	}
+	   String getStringFromInputStream(InputStream is) {
+
+			BufferedReader br = null;
+			StringBuilder sb = new StringBuilder();
+
+			String line;
+			try {
+
+				br = new BufferedReader(new InputStreamReader(is));
+				while ((line = br.readLine()) != null) {
+					sb.append(line);
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				if (br != null) {
+					try {
+						br.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+			return sb.toString();
+
+		}
+
 }
+
