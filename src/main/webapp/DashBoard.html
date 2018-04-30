@@ -45,22 +45,21 @@
         </form>
         <script>
         	function deleteAccount(){
-	        	window.alert("Account number is"+document.getElementById("accountNumber2").value);
 	      		var xhr = new XMLHttpRequest();
 	      		xhr.open('DELETE',
 	      			'http://localhost:8080/Application-Management-App/api/account/json/'
 	      			+document.getElementById("accountNumber2").value,true);
-
+	      			
 	      			if (xhr.readyState==4 && xhr.status=="200"){
-	      				document.write(xhr.responseText);
-	      				window.alert("could not find response text");
+	      				
+	      				handleResponse(xhr.responseText);
 	      			}
-	      			else{
-	      				window.alert("finished attempt");
-	      			}
-      			xhr.send()
-      			
+	      				
+      			xhr.send();
+      			function handleResponse(response){
+      			window.alert(response);
       		}
+      	}
         </script>
         
     </body>
