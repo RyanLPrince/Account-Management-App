@@ -16,4 +16,9 @@ QA Individual Exercise. A simple Java EE Account Management Application, that im
 	
 (3) Testing Framework-Mockito:
 	-Ability to mock objects for automated unit testing for methods that require external services
+
 	
+	
+Home page:
+
+localhost:8080/Application-Management-App/
