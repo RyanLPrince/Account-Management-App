@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+    </head>
     <body>
     	<h1>Add New User</h1>
         <form action="Create" method="post">
@@ -33,5 +34,34 @@
         <form action="GetAll" method="get">
         	<input type="submit" value="Get All Accounts">
         </form>
+        <h1>Delete Account</h1>
+        <form>
+        	Account Number<input type="number"
+                   		placeholder="Account Number"
+                   		required="required"
+                    	id="accountNumber2"
+                    	name="accountNumber2"/>
+                  <button type="submit" onclick="deleteAccount()">Delete Account</button>
+        </form>
+        <script>
+        	function deleteAccount(){
+	        	window.alert("Account number is"+document.getElementById("accountNumber2").value);
+	      		var xhr = new XMLHttpRequest();
+	      		xhr.open('DELETE',
+	      			'http://localhost:8080/Application-Management-App/api/account/json/'
+	      			+document.getElementById("accountNumber2").value,true);
+
+	      			if (xhr.readyState==4 && xhr.status=="200"){
+	      				document.write(xhr.responseText);
+	      				window.alert("could not find response text");
+	      			}
+	      			else{
+	      				window.alert("finished attempt");
+	      			}
+      			xhr.send()
+      			
+      		}
+        </script>
+        
     </body>
 </html>
