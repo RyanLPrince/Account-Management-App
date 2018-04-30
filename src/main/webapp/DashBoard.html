@@ -43,7 +43,57 @@
                     	name="accountNumber2"/>
                   <button type="submit" onclick="deleteAccount()">Delete Account</button>
         </form>
+        <h1>Update Account</h1>
+        <form>
+        	Account Number<input type="number"
+                   		placeholder="Account Number"
+                   		required="required"
+                    	id="accountNumber3"
+                    	name="accountNumber3"/>
+            First Name <input type="text"
+                   			placeholder="first name"
+                   			required="required"
+                			id="firstName3"
+                			name="firstName3"/>
+            Surname	<input type="text"
+                   	placeholder="Surname"
+                   	required="required"
+                    id="surname3"
+                    name="surname3"/>         	
+                  <button type="submit" onclick="createAccount()">Update Account</button>
+        </form>
         <script>
+        
+        	class Account{
+    		constructor(firstName,surname,accountNumber){
+        	this.firstName=firstName;
+        	this.surname=surname;
+        	this.accountNumber=accountNumber;
+        	this.generateAccountNumber=false;
+    		}
+    
+    	getFirstName(){
+        	return this.firstName;
+    	}
+    	getSurname(){
+        	return this.surname;
+    	}
+    	getAccountNumber(){
+        	return this.accountNumber;
+    	}
+    
+		}
+		
+		function createAccount(){
+    		var account=new Account(document.getElementById("firstName3").value,
+                        document.getElementById("surname3").value,
+                        document.getElementById("accountNumber3").value)
+    
+   				 var accountAsJSON=JSON.stringify(account)
+    			window.alert(accountAsJSON);
+    			updateAccount(accountAsJSON,account.getAccountNumber());
+   
+		}
         	function deleteAccount(){
 	      		var xhr = new XMLHttpRequest();
 	      		xhr.open('DELETE',
@@ -60,7 +110,19 @@
       			window.alert(response);
       		}
       	}
+      	function updateAccount(accountAsJSON,accountNumber){
+      		var xhr=new XMLHttpRequest();
+      		xhr.open('PUT','http://localhost:8080/Application-Management-App/api/account/json/'
+      		+accountNumber,true);
+      		if (xhr.readyState==4 && xhr.status=="200"){
+	      				
+	      				handleResponse(xhr.responseText);
+	      			}
+      		xhr.setRequestHeader('Content-Type', 'application/json')
+      		xhr.send(JSON.stringify(accountNumber),accountAsJSON,);
+      		window.alert(JSON.stringify(accountNumber));
+      		window.alert("update completed");
+      	}
         </script>
-        
-    </body>
+	</body>
 </html>
